@@ -1,23 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import {useSelector, useDispatch} from "react-redux";
+
 
 function App() {
+  const state= useSelector((state)=> state);
+  const dispatch= useDispatch();
+
+  const handleAdd = () =>{
+    dispatch({
+      type:"INCREMENT_AMOUNT"
+    })
+  };
+
+  const handleReduce = () =>{
+    dispatch({
+      type:"DECREMENT_AMOUNT"
+    })
+  };
+  
+  // console.log(state)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>Count:{state.count}</h1>
+     <button onClick={handleAdd}>Add</button>
+     <button onClick={handleReduce}>Reduce</button>
     </div>
   );
 }
